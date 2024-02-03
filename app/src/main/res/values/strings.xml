@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AgeCalculatorApp</string>
+    <string name="invalid_date_toast">Invalid Date!!</string>
 </resources>
