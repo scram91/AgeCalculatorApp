@@ -1,22 +1,19 @@
 package edu.psu.sweng888.agecalculatorapp;
 
-import static java.lang.Integer.parseInt;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
-
-import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,20 +38,25 @@ public class MainActivity extends AppCompatActivity {
                 String firstName = mInputFirstName.getText().toString();
                 String lastName = mInputLastName.getText().toString();
                 String dateOfBirthString = mInputDateOfBirth.getText().toString();
+                boolean valid_date = true;
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+                dateFormat.setLenient(false);
+                Calendar inputDate = Calendar.getInstance();
                 try {
-                    Calendar inputDate = Calendar.getInstance();
                     inputDate.setTime(Objects.requireNonNull(dateFormat.parse(dateOfBirthString)));
-
+                } catch (ParseException e) {
+                    Toast.makeText(MainActivity.this,
+                            R.string.invalid_date_toast,
+                            Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                    valid_date = false;
+                }
+                if(valid_date) {
                     int age = getUserAge(inputDate);
                     CharSequence result_toast = String.valueOf(age);
                     Toast.makeText(MainActivity.this,
                             result_toast,
-                            Toast.LENGTH_LONG).show();
-                } catch (ParseException e) {
-                    Toast.makeText(MainActivity.this,
-                            R.string.invalid_date_toast,
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -77,8 +79,13 @@ public class MainActivity extends AppCompatActivity {
 
         int currentMonth = cal.get(Calendar.MONTH);
         int inputMonth = dateOfBirth.get(Calendar.MONTH);
-        Log.d(TAG, "Current Month value: " + (currentMonth + 1));
-        Log.d(TAG, "Month value: " + (inputMonth + 1));
+        Log.d(TAG, "Current Month value: " + (currentMonth));
+        Log.d(TAG, "Month value: " + (inputMonth));
+        if(inputMonth > 11){
+            Toast.makeText(MainActivity.this,
+                    R.string.invalid_date_toast,
+                    Toast.LENGTH_LONG).show();
+        }
         if(inputMonth > currentMonth){
             age--;
         }else if(inputMonth == currentMonth){
@@ -89,11 +96,6 @@ public class MainActivity extends AppCompatActivity {
             if (inputDay > currentDay){
                 age--;
             }
-        }
-        if(inputMonth > 11){
-            Toast.makeText(MainActivity.this,
-                    R.string.invalid_date_toast,
-                    Toast.LENGTH_LONG).show();
         }
         return age;
     }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AgeCalculatorApp</string>
     <string name="invalid_date_toast">Invalid Date!!</string>
+    <string name="enter_your_first_name">Enter Your First Name</string>
+    <string name="enter_your_last_name">Enter Your Last Name</string>
+    <string name="enter_your_date_of_birth_dd_mm_yyyy">Enter Your Date of Birth (dd/MM/yyyy)</string>
+    <string name="calculate_age">Calculate Age</string>
 </resources>

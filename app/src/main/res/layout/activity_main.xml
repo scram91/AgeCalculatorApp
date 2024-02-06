@@ -10,32 +10,35 @@
 
     <EditText
         android:id="@+id/first_name_field"
+        android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginLeft="5sp"
         android:layout_marginRight="5sp"
-        android:hint="Enter Your First Name" />
+        android:hint="@string/enter_your_first_name" />
 
     <EditText
         android:id="@+id/last_name_field"
+        android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginLeft="5sp"
         android:layout_marginRight="5sp"
-        android:hint="Enter Your Last Name" />
+        android:hint="@string/enter_your_last_name" />
 
     <EditText
         android:id="@+id/birthday_field"
+        android:inputType="text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginLeft="5sp"
         android:layout_marginRight="5sp"
-        android:hint="Enter Your Date of Birth (dd/MM/yyyy)" />
+        android:hint="@string/enter_your_date_of_birth_dd_mm_yyyy" />
 
     <Button
         android:id="@+id/calculate_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate Age" />
+        android:text="@string/calculate_age" />
 
 </LinearLayout>
